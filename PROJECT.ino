@@ -137,7 +137,7 @@ void displayTemperature(int8_t temperature)
 // parameter :  int8_t templist[]
 // return average temperature 
 
-float displayaveTemperature(int8_t templist)
+float displayaveTemperature(int8_t templist[])
 {
 	collectTemperature();
 	int i;
