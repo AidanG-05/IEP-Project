@@ -44,6 +44,8 @@ void Exit();
 
 int8_t tempList[10];
 int8_t humiList[10];
+int8_t aveTemp;
+int8_t aveHumi;
 
 void setup()
 {
@@ -78,20 +80,18 @@ void loop()
 	} while (KeyNum > 5);
 	switch (KeyNum)
 	{
-	case 1: {displayTemperature(tempList[2]); } break;
+	case 1: {displayTemperature(t); } break;
 
 	case 2:
 	{
-		float T = aveTemp();
-		displayaveTemperature(T);
+		displayaveTemperature(aveTemp);
 	} break;
 
-	case 3: {displayHumidity(humiList[2]); }break;
+	case 3: {displayHumidity(h); }break;
 
 	case 4:
 	{
-		float H = aveHumi();
-		displayaveHumidity(H);
+		displayaveHumidity(aveHumi);
 	} break;
 
 	}
@@ -139,8 +139,8 @@ void displayTemperature(int8_t temperature)
 
 float displayaveTemperature(int8_t templist)
 {
-	collectTemperature(tempList[]);
-	int8_t i;
+	collectTemperature();
+	int i;
 	int8_t sum = 0;
 	int8_t aveTemp;
 	for (i = 0; i < 10; i++)
@@ -148,10 +148,12 @@ float displayaveTemperature(int8_t templist)
 		sum = sum + templist[i];
 	}
 	aveTemp = sum / 10;
-	disp.display(aveTemp);
+	displayTemperature(aveTemp);
 	return aveTemp;
 }
 
+//Function: displaty humidity on 4-digit digital tube
+//Parameters: int8_t humidity
 void displayHumidity(int8_t humidity)
 {
 	int8_t Humidity[4];
